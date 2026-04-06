@@ -21,6 +21,31 @@ It is designed as part of a DevOps assignment and includes containerization usin
 - Flask-RESTful  
 - Docker  
 
+# Database Setup
+1. Install MySQL
+2. Open MySQL terminal:
+   mysql -u root -p
+3. Run the following:
+   created Database assignment_db;
+   use assignment_db;
+   create table items (
+       id INT AUTO_INCREMENT PRIMARY KEY,
+       name VARCHAR(255) );
+
+# Run the Project
+-pip install -r requirements.txt
+-python3 app.py
+
+# API 
+GET    /items        → Get all items
+POST   /items        → Create item
+PUT    /items/<id>   → Update item
+DELETE /items/<id>   → Delete item
+GET    /health       → Health check
+
+# Example
+curl -X POST http://127.0.0.1:5000/items -H "Content-Type: application/json" -d '{"name":"Ihsan"}'
+
 # Project Structure
 ├──  app.py
 ├──  Dockerfile
