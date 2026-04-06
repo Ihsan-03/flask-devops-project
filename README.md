@@ -20,6 +20,7 @@ It is designed as part of a DevOps assignment and includes containerization usin
 - Flask  
 - Flask-RESTful  
 - Docker  
+- mysql-connector-python
 
 # Database Setup
 1. Install MySQL
@@ -31,6 +32,11 @@ It is designed as part of a DevOps assignment and includes containerization usin
    create table items (
        id INT AUTO_INCREMENT PRIMARY KEY,
        name VARCHAR(255) );
+
+#Deployment
+- Deployed on AWS EC-2 instance
+- Runns on Port 5000
+- http://<ec2-ip>:5000
 
 # Run the Project
 - pip install -r requirements.txt
@@ -44,7 +50,20 @@ DELETE /items/<id>   → Delete item
 GET    /health       → Health check
 
 # Example
+
+Local:
+http://127.0.0.1:5000
+
+To perform operations:
 curl -X POST http://127.0.0.1:5000/items -H "Content-Type: application/json" -d '{"name":"Ihsan"}'
+
+
+AWS:
+http://<ec2-IP>:5000
+
+To perform operations:
+curl -X POST http://<ec2-IP>:5000/items -H "Content-Type: application/json" -d '{"name":"Ihsan"}'
+
 
 # Project Structure
 ├──  app.py
@@ -61,9 +80,9 @@ Solution:-
 I solved it by creating a virtual environment and installed dependencies
 
 Commands used to resolve:
-python3 -m venv venv
-source venv/bin/activate
-pip install flask flask-restful
+--> python3 -m venv venv
+--> source venv/bin/activate
+--> pip install flask flask-restful
 
 - MySQL authentication issue
 I was unable to connect using root user due to authentication errors (error 1698)
