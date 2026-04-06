@@ -37,6 +37,8 @@ It is designed as part of a DevOps assignment and includes containerization usin
 - Deployed on AWS EC-2 instance
 - Runs on Port 5000
 - http://<ec2-ip>:5000
+- Configured Nginx for reverse proxy
+- Nginx routes traffic 
 
 # Run the Project
 - pip install -r requirements.txt
