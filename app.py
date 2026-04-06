@@ -2,6 +2,16 @@
 from flask import Flask,jsonify,request
 from flask_restful import Resource, Api
 
+import mysql.connector
+
+db = mysql.connector.connect(
+    host="localhost",
+    user="ihsan",
+    password="5656",
+    database="assignment_db" )
+
+
+
 app = Flask(__name__)
 api = Api(app)
 
@@ -17,38 +27,56 @@ def health_check():
     return jsonify({'status': 'healthy'}), 200
 
 
-#Simple REST API
-fakeDatabase = {
-    1:{'Name':'Ihsan'},
-    2:{'Status':'Unemployed'},
-    3:{'Current':'Applying'},
-}
+##Simple REST API
+##fakeDatabase = {
+ ##   1:{'Name':'Ihsan'},
+  ##  2:{'Status':'Unemployed'},
+ ##  3:{'Current':'Applying'},
+##}
 
 ##Create & Read Items
 class Items(Resource):
     def get(self):
-        return fakeDatabase                         
+        cursor = db.cursor()
+        cursor.execute("SELECT * FROM items")
+        data = cursor.fetchall()
+        cursor.close()  
+        return data
 
     def post(self):
         data = request.get_json()
-        new_id = len(fakeDatabase) + 1
-        fakeDatabase[new_id] = data
-        return data, 201
+        name = data['name']
+        cursor =db.cursor()
+        cursor.execute("INSERT INTO items(name) VALUES(%s)", (name,))
+        db.commit()
+        cursor.close()
+        return {"message": "Item added"}, 201
+
 
 ##Read,update,delete items
 class Item(Resource):
     def get(self, pk):
-        return fakeDatabase.get[pk,{"message":"Not found"}]
+        cursor = db.cursor()
+        cursor.execute("SELECT * FROM items WHERE id=%s", (pk,))
+        data = cursor.fetchone()
+        cursor.close()
+        return data if data else {"message": "Not found"}
 
     def put(self, pk):
         data = request.get_json()
-        fakeDatabase[pk] = data
-        return data
+        name = data['name']
+        cursor = db.cursor()
+        cursor.execute("UPDATE items SET name=%s WHERE id=%s", (name, pk))
+        db.commit()
+        cursor.close()
+        return {"message": "Updated"}
 
     def delete(self, pk):
-        fakeDatabase.pop(pk, None)
-        return {"message": "Deleted"}
-
+        cursor = db.cursor()
+        cursor.execute("Delete from items where id=%s", (pk,))
+        db.commit()
+        cursor.close()
+        return{"message":"Deleted"}
 
 
 
