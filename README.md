@@ -33,9 +33,9 @@ It is designed as part of a DevOps assignment and includes containerization usin
        id INT AUTO_INCREMENT PRIMARY KEY,
        name VARCHAR(255) );
 
-#Deployment
+# Deployment
 - Deployed on AWS EC-2 instance
-- Runns on Port 5000
+- Runs on Port 5000
 - http://<ec2-ip>:5000
 
 # Run the Project
