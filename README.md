@@ -33,8 +33,8 @@ It is designed as part of a DevOps assignment and includes containerization usin
        name VARCHAR(255) );
 
 # Run the Project
--pip install -r requirements.txt
--python3 app.py
+- pip install -r requirements.txt
+- python3 app.py
 
 # API 
 GET    /items        → Get all items
@@ -53,3 +53,37 @@ curl -X POST http://127.0.0.1:5000/items -H "Content-Type: application/json" -d 
 ├── .gitignore
 ├── .dockerignore
 └──  README.md
+
+# Challenges faced
+- pip installation issue
+I got error related to environment management, which prevented pip from installing packages
+Solution:-
+I solved it by creating a virtual environment and installed dependencies
+
+Commands used to resolve:
+python3 -m venv venv
+source venv/bin/activate
+pip install flask flask-restful
+
+- MySQL authentication issue
+I was unable to connect using root user due to authentication errors (error 1698)
+Solution:-
+I used sudo mysql to login
+Created a new MySQL user
+
+- Database connection issues
+Initially faced issues like:-
+“Access denied”
+“Cursor not connected”
+Solution:-
+Created a user and entered correct credentials
+Created fresh DB 
+Avoided global cursor
+
+- Debugging API issues
+API was working but wasn't fetching data
+I was using old data instead of MySQL
+Solution:-
+Replaced old data with SQL queries
+
+- Syntax and coding errors
