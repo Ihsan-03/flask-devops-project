@@ -84,5 +84,5 @@ api.add_resource(Items, '/items')
 api.add_resource(Item, '/items/<int:pk>')
 
 if __name__ == '__main__':
-   app.run(debug=True)
+   app.run(host="0.0.0.0", port=5000, debug=True)
 
