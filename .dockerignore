@@ -4,6 +4,6 @@
 .gitignore
 .git/
 **/__pycache__/
-Dockerfile
-db.sqlite3
-**/*.md
+
+venv/
+.env
