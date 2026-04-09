@@ -44,6 +44,21 @@ It is designed as part of a DevOps assignment and includes containerization usin
 - pip install -r requirements.txt
 - python3 app.py
 
+# Docker Setup 
+- Build image
+      docker build -t flask-devops-app
+- Run cantainer
+      docker run -d -p 5000:5000 flask-devops-app
+- Run applicaion on browser
+      http://localhost:5000
+- Stop cantainer
+      docker ps
+      docker stop <cantainer_id>
+- Remove cantainer
+      docker rm <cantainer_id>
+- Remove image
+      docker rmi flask-devops-app
+
 # API 
 GET    /items        → Get all items
 POST   /items        → Create item
