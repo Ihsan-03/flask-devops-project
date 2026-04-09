@@ -46,18 +46,18 @@ It is designed as part of a DevOps assignment and includes containerization usin
 
 # Docker Setup 
 - Build image
-      docker build -t flask-devops-app
+     - docker build -t flask-devops-app
 - Run cantainer
-      docker run -d -p 5000:5000 flask-devops-app
+     - docker run -d -p 5000:5000 flask-devops-app
 - Run applicaion on browser
-      http://localhost:5000
+     - http://localhost:5000
 - Stop cantainer
-      docker ps
-      docker stop <cantainer_id>
+     - docker ps
+     - docker stop <cantainer_id>
 - Remove cantainer
-      docker rm <cantainer_id>
+     - docker rm <cantainer_id>
 - Remove image
-      docker rmi flask-devops-app
+     - docker rmi flask-devops-app
 
 # API 
 GET    /items        → Get all items
@@ -96,6 +96,16 @@ curl -X POST http://<ec2-IP>:5000/items -H "Content-Type: application/json" -d '
 - Dependencies will be installed
 - Run Tests (Will do it in next update)
 - Docker image is build
+
+# Architecture diagram / Workflow
+
+Client (curl/browser)
+        ↓
+Nginx (reverse proxy)
+        ↓
+Flask App (API logic)
+        ↓
+MySQL Database (data storage)
 
 # Challenges faced
 - pip installation issue
