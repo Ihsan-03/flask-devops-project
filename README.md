@@ -90,6 +90,13 @@ curl -X POST http://<ec2-IP>:5000/items -H "Content-Type: application/json" -d '
 ├── .dockerignore
 └──  README.md
 
+# CI Pipeline
+ I have used Github actions for CI, on Every push pipeline will
+- check the code
+- Dependencies will be installed
+- Run Tests (Will do it in next update)
+- Docker image is build
+
 # Challenges faced
 - pip installation issue
 I got error related to environment management, which prevented pip from installing packages
@@ -123,3 +130,5 @@ Solution:-
 Replaced old data with SQL queries
 
 - Syntax and coding errors
+
+- Faced error for setting up ci pipeline 
