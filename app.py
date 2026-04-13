@@ -4,6 +4,12 @@ from flask_restful import Resource, Api
 from dotenv import load_dotenv
 import os
 import mysql.connector
+import logging
+
+logging.basicConfig(
+    filename='app.log',
+    level=logging.INFO
+)
 
 load_dotenv()
 
@@ -27,6 +33,7 @@ def assign():
 #Health check endpoint
 @app.route('/health', methods=['GET'])
 def health_check():
+    logging.info("Health endpoint called")
     return jsonify({'status': 'healthy'}), 200
 
 
